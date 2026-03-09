@@ -1846,6 +1846,17 @@ mainTabs.forEach(function(t) {
   });
 });
 
+var hashToMainTab = {
+  '#plu':       { btn: 'tab-plu', section: 'main-plu' },
+  '#grand-rue': { btn: 'tab-grand-rue', section: 'main-grand-rue' },
+  '#faq':       { btn: 'tab-faq', section: 'main-faq' }
+};
+
+var hashTarget = hashToMainTab[window.location.hash];
+if (hashTarget) {
+  activateMainTab(hashTarget.btn, hashTarget.section, true);
+}
+
 /* ── PLU SUB-TABS ── */
 var pluTabs = ['alle', 'law'];
 pluTabs.forEach(function(tab) {
