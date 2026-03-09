@@ -1796,10 +1796,17 @@ document.documentElement.classList.add('js-reveal-ready');
 revealPanel();
 
 /* ── NAVIGATION HELPERS ── */
-function resetScrollTop() {
-  window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  document.documentElement.scrollTop = 0;
-  document.body.scrollTop = 0;
+function getMainTabScrollOffset() {
+  var nav = document.querySelector('.main-nav');
+  var navHeight = nav ? nav.offsetHeight : 0;
+  return navHeight + 14;
+}
+
+function scrollToMainSection(section, smooth) {
+  if (!section) return;
+  var offset = getMainTabScrollOffset();
+  var y = Math.max(0, section.getBoundingClientRect().top + window.pageYOffset - offset);
+  window.scrollTo({ top: y, left: 0, behavior: smooth ? 'smooth' : 'auto' });
 }
 
 function activateMainTab(btnId, sectionId, smooth) {
@@ -1818,11 +1825,9 @@ function activateMainTab(btnId, sectionId, smooth) {
     document.activeElement.blur();
   }
 
-  resetScrollTop();
   requestAnimationFrame(function() {
-    resetScrollTop();
-    section.scrollIntoView({ behavior: smooth ? 'smooth' : 'auto', block: 'start' });
-    requestAnimationFrame(function() { resetScrollTop(); revealPanel(section); });
+    scrollToMainSection(section, smooth);
+    requestAnimationFrame(function() { revealPanel(section); });
   });
 }
 
@@ -1837,7 +1842,7 @@ mainTabs.forEach(function(t) {
   if (!btn) return;
   btn.addEventListener('click', function(e) {
     e.preventDefault();
-    activateMainTab(t.btn, t.section, false);
+    activateMainTab(t.btn, t.section, true);
   });
 });
 
