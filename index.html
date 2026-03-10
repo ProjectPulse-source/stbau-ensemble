@@ -869,6 +869,77 @@ em { font-style: italic; }
   .faq-a { padding: 2px 16px 18px 16px; }
 }
 
+
+/* ══════════════════════════════════════════
+   NOTRE CAP
+══════════════════════════════════════════ */
+.cap-section {
+  background: var(--bg-2);
+  padding: 72px 24px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid rgba(15,32,68,.06);
+}
+.cap-inner {
+  max-width: 780px;
+  margin: 0 auto;
+}
+.cap-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 12px;
+}
+.cap-title {
+  font-size: clamp(28px, 3.6vw, 44px);
+  font-weight: 750;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+.cap-sub {
+  font-size: clamp(17px, 1.8vw, 20px);
+  line-height: 1.5;
+  color: var(--ink-3);
+  margin-bottom: 28px;
+  max-width: 38ch;
+}
+.cap-list {
+  border-top: 1px solid var(--rule);
+}
+.cap-item {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.cap-num {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--navy);
+  letter-spacing: -.02em;
+}
+.cap-copy {
+  font-size: 16px;
+  line-height: 1.68;
+  color: var(--ink-2);
+}
+.cap-copy strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+@media(max-width:600px){
+  .cap-section { padding: 56px 20px; }
+  .cap-sub { margin-bottom: 22px; }
+  .cap-item { grid-template-columns: 28px 1fr; gap: 12px; padding: 16px 0; }
+  .cap-num { font-size: 16px; }
+  .cap-copy { font-size: 15px; line-height: 1.62; }
+}
+
 /* ══════════════════════════════════════════
    FINALE
 ══════════════════════════════════════════ */
@@ -1417,7 +1488,548 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 </div><!-- /panel-alle -->
 
-  <div class="finale">
+</div><!-- /main-plu -->
+
+
+<!-- ════════════════════════════════════════════════
+     ONGLET 2 — GRAND RUE
+════════════════════════════════════════════════ -->
+<div id="main-grand-rue" class="main-section">
+
+  <!-- INTRO -->
+  <section>
+    <div class="container">
+      <div class="sec-label" style="color:var(--red);margin-bottom:12px;">Trois défaillances. Un dossier sacrifié.</div>
+      <h2 class="red" style="margin-bottom:16px;">La Grand Rue :<br>ce qui s'est vraiment passé.</h2>
+      <p style="font-size:18px;color:var(--ink-2);max-width:620px;line-height:1.65;">La Grand Rue concentre environ <strong>25 % des habitants de la commune</strong>. Elle est la vitrine commerciale et touristique de Saint-Bauzille. Elle souffre d'un état de délabrement avancé — réseau d'assainissement en fibrociment-amiante, chaussée dégradée, humidité en bas de façades. Ce dossier a été mené, puis abandonné, puis instrumentalisé. Voici les faits, dans l'ordre où ils se sont produits.</p>
+
+      <div class="context-block proof">
+        <div class="context-block-title">Ce que nous pouvons montrer</div>
+        <ul>
+          <li>un dossier préparé ;</li>
+          <li>des marchés signés ;</li>
+          <li>435 000 € de subventions obtenues.</li>
+        </ul>
+      </div>
+
+      <div class="context-block impact">
+        <div class="context-block-title">Concrètement, pour vous</div>
+        <ul>
+          <li>une rue plus sûre pour tous ;</li>
+          <li>des façades mieux protégées et un cadre de vie préservé ;</li>
+          <li>un projet financé, piloté et réalisable, au service du village.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHRONOLOGIE CAUSALE -->
+  <section class="bg-alt">
+    <div class="container">
+      <div class="reveal">
+        <div class="sec-label" style="margin-bottom:12px;">La chronologie qui accuse</div>
+        <h2 style="margin-bottom:24px;">Un projet construit,<br>puis abandonné à mi-chemin.</h2>
+      </div>
+      <div class="reveal">
+        <div class="chrono-track">
+
+          <h3 class="intertitle-grand-rue">Un dossier prêt à partir</h3>
+
+          <div class="chrono-row row-ok">
+            <div class="c-dot c-ok">①</div>
+            <div class="c-body">
+              <div class="c-date">Fin 2022 — Lancement</div>
+              <div class="c-title">Anne-Marie Motard prend en charge le dossier Grand Rue.</div>
+              <div class="c-desc">En tant qu'adjointe à l'urbanisme, elle commande les études, coordonne les bureaux d'étude (Amphoux / Ingesurf), et suit le diagnostic technique complet du réseau et de la voirie.</div>
+            </div>
+          </div>
+
+          <div class="chrono-row row-ok">
+            <div class="c-dot c-ok">②</div>
+            <div class="c-body">
+              <div class="c-date">2023-2024 — Études et consultation</div>
+              <div class="c-title">Vote en Conseil Municipal. Études validées. Marché signé.</div>
+              <div class="c-desc">Le projet est présenté, débattu et voté en Conseil Municipal. Un marché est signé par le maire lui-même avec les entreprises. 900 000 € sont inscrits au budget 2024 (art. 2152). Les études diagnostiques <strong>(financées entre autres, par les impôts locaux),</strong> sont consultables en mairie sur simple demande (Art. L311-1 CRPA).</div>
+            </div>
+          </div>
+
+          <div class="chrono-row row-ok">
+            <div class="c-dot c-ok">③</div>
+            <div class="c-body">
+              <div class="c-date">Janvier 2025 — Accord de toutes les parties</div>
+              <div class="c-title">Réunion plénière : commune, maître d'œuvre, entreprises. Accord sur un plan révisé.</div>
+              <div class="c-desc">En présence du maire, de l'adjointe à l'urbanisme et de la DGS, un accord est conclu pour adapter le projet à la situation de financement partielle — pratique courante dans la gestion de projet public : révision à la baisse des dépenses, étalement sur plusieurs exercices, division en 4 ou 5 tranches, relance active des subventions restantes, maintien de la qualité technique (réseau assainissement, caniveau central, revêtement non goudronné). <strong>Toutes les parties avaient signé.</strong></div>
+            </div>
+          </div>
+
+          <h3 class="intertitle-grand-rue">Le retournement politique</h3>
+
+          <div class="chrono-row row-fail">
+            <div class="c-dot c-fail">✕</div>
+            <div class="c-body">
+              <div class="c-date">Printemps 2025 — Rupture unilatérale</div>
+              <div class="c-title">Le maire abandonne l'accord. Mme Motard est dessaisie du dossier.</div>
+              <div class="c-desc"><strong>Cet accord avait pourtant déjà intégré la contrainte financière ensuite invoquée pour y renoncer.</strong> 435 000 € avaient été obtenus pour le projet Grand Rue & Espace Lacan, dont 250 000 € de l’Agence de l’Eau pour le seul réseau d’assainissement, soit 50 % de son coût. La commune disposait en outre de 912 992 € d’excédent de fonctionnement (Compte Financier Unique 2024) et d’un ratio de désendettement inférieur à 2 ans. Le motif financier avancé ne suffit donc pas à expliquer l’abandon. Mme Motard, qui portait ce projet depuis l’origine, est écartée sans explication publique.</div>
+            </div>
+          </div>
+
+          <h3 class="intertitle-grand-rue">Ce que ce retard coûte au village</h3>
+
+          <div class="chrono-row row-fail">
+            <div class="c-dot c-fail">✕</div>
+            <div class="c-body">
+              <div class="c-date">Budget 2024 — L'argent non utilisé</div>
+              <div class="c-title">900 000 € inscrits. 640 572 € annulés.</div>
+              <div class="c-desc">Les moyens existaient, mais ils n’ont pas été mobilisés. Les crédits ont été annulés en fin d’exercice, avant toute recherche de solutions alternatives et sans information des riverains.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLÈME 1 : GOUVERNANCE -->
+  <section>
+    <div class="container">
+      <div class="reveal">
+        <div class="sec-label"><span class="sec-num-badge badge-red">1</span>Gouvernance et transparence</div>
+        <h2 class="red">Des riverains ignorés.<br>Une pétition méprisée.</h2>
+        <div class="rule-line" style="color:var(--red);"></div>
+      </div>
+      <div class="reveal">
+        <div class="chrono-track" style="padding-top:8px;">
+
+          <div class="chrono-row row-fail">
+            <div class="c-dot c-fail">①</div>
+            <div class="c-body">
+              <div class="c-date">Été-automne 2025</div>
+              <div class="c-title">Les riverains écrivent. Le maire ne répond pas.</div>
+              <div class="c-desc">Les habitants de la Grand Rue adressent des demandes écrites au maire pour obtenir des informations sur l'avenir du projet. Après plusieurs mois d'attente, aucune réponse. Le droit à l'information des administrés (Art. L311-1 CRPA) est pourtant un droit opposable.</div>
+            </div>
+          </div>
+
+          <div class="chrono-row row-fail">
+            <div class="c-dot c-fail">②</div>
+            <div class="c-body">
+              <div class="c-date">Automne 2025</div>
+              <div class="c-title">Un collectif se constitue. Une pétition dépasse 400 signatures.</div>
+              <div class="c-desc">Faute de réponse, les riverains se constituent en collectif citoyen. <strong>La pétition recueille plus de 400 signatures, soit plus d’un dixième des électeurs inscrits de la commune.</strong></div>
+            </div>
+          </div>
+
+          <div class="chrono-row row-fail">
+            <div class="c-dot c-fail">③</div>
+            <div class="c-body">
+              <div class="c-date">Automne-hiver 2025 — Violation de l'Art. L2142-1 CGCT</div>
+              <div class="c-title">Le maire refuse d'inscrire la pétition à l'ordre du jour du Conseil Municipal.</div>
+              <div class="c-desc">Conformément à l’article L.1112-16 du Code général des collectivités territoriales, <strong>il appartenait alors au maire d’accuser réception de la demande et d’en informer le conseil municipal à la première séance suivante.</strong> Aucune suite n'a été donné.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="box box-red" style="margin-top:16px;">
+          <div class="box-label" style="color:var(--red);">Résumé du problème 1</div>
+          <p>Un projet voté, un accord signé, des riverains ignorés, puis une pétition de plus de 400 signataires sans passage devant le conseil municipal. Pour une commune, c’est un très mauvais signal démocratique.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLÈME 2 : BM47 — CONTRE-VÉRITÉS -->
+  <section class="bg-alt">
+    <div class="container">
+      <div class="reveal">
+        <div class="sec-label"><span class="sec-num-badge badge-red">2</span>Vérité et transparence</div>
+        <h2 class="red">L'éditorial BM N°47 :<br>six affirmations contredites par les pièces en période de réserve.</h2>
+        <div class="rule-line" style="color:var(--red);"></div>
+      </div>
+      <div class="reveal">
+        <div class="box box-red" style="margin-bottom:24px;">
+          <div class="box-label" style="color:var(--red);">Irrégularité électorale ?</div>
+          <p>Publié en novembre-décembre 2025, le Bulletin Municipal N°47 contient un éditorial du maire consacré à la Grand Rue. Cette publication intervient en <strong>période de réserve préélectorale</strong>. L'article L52-1 du Code électoral interdit toute communication institutionnelle à caractère promotionnel ou partisan. Un éditorial orientant l'opinion sur un dossier sensible, à 4 mois du scrutin, entre dans cette catégorie.</p>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="confr">
+          <div class="confr-claim">
+            <div class="cl-label">BM N°47 — M. le Maire</div>
+            <p>« La durée initiale des travaux (<strong>1 an par secteur</strong>) soulève des inquiétudes légitimes. »</p>
+          </div>
+          <div class="confr-verdict">
+            <div class="vd-label">Marché signé — art. II.3</div>
+            <p>Durée contractuelle : <strong>16 à 18 mois pour l'ensemble des 3 tranches</strong>. Aucun avenant. L'éditorial multiplie la durée réelle par 2.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="confr">
+          <div class="confr-claim">
+            <div class="cl-label">BM N°47 — M. le Maire</div>
+            <p>« Une étude par caméra a révélé un <strong>bon état général</strong>, rendant inutile sa rénovation. »</p>
+          </div>
+          <div class="confr-verdict">
+            <div class="vd-label">Diagnostic AVP officiel — sect. IV.1</div>
+            <p>Réseau majoritairement en fibrociment-amiante Ø150. Contre-pentes, dysfonctionnements, rejets observés. Conclusion des experts : <strong>« certains travaux absolument nécessaires »</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="confr">
+          <div class="confr-claim">
+            <div class="cl-label">BM N°47 — M. le Maire</div>
+            <p>« … le projet initial, estimé à <strong>près de 3 millions d'euros</strong>… »</p>
+          </div>
+          <div class="confr-verdict">
+            <div class="vd-label">Rapport d'Analyse des Offres — visé par le maire sortant, Oscar Alle</div>
+            <p>Total consolidé : <strong>2 007 698 € HT</strong> (base) / 2 385 658 € HT (avec options) : 
+c'est le coût total signé par le maire lui-même — un projet qui ne se 
+limitait pas à la <strong>Grand Rue</strong> mais comprenait aussi 
+l'aménagement de l'<strong>espace Lacan</strong>, ce qui est 
+systématiquement passé sous silence. En ne citant qu'une partie du 
+périmètre, l'éditorial <strong>surestime le coût jusqu'à 50 %</strong> 
+et <strong>sous-estime la portée du projet</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="confr">
+          <div class="confr-claim">
+            <div class="cl-label">BM N°47 — M. le Maire</div>
+            <p>« … n'a reçu <strong>aucune subvention hors Réseau</strong>. »</p>
+          </div>
+          <div class="confr-verdict">
+            <div class="vd-label">Documents de financement officiels</div>
+            <p>Subventions obtenues : 250 000 € (Agence de l'Eau — réseau), 79 000 € (Région), 70 000 € (Fonds verts État), 40 000 € (Communauté de communes — espace Lacan). <strong>Total : 435 000 €.</strong> Les trois dernières sont hors réseau.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="confr">
+          <div class="confr-claim">
+            <div class="cl-label">BM N°47 — M. le Maire</div>
+            <p>« accès impossible aux véhicules de secours, aux livraisons, aux services publics »</p>
+          </div>
+          <div class="confr-verdict">
+            <div class="vd-label">Clauses contractuelles — marché signé</div>
+            <p>Obligations contractuelles explicites : <strong>accès maintenus</strong> en permanence (secours, livraisons, piétons), longueur maximale des tranchées de 50 m, phasage et sécurisation des accès. Tout cela est inscrit noir sur blanc.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="confr">
+          <div class="confr-claim">
+            <div class="cl-label">BM N°47 — M. le Maire</div>
+            <p>« Des exemples dans des <strong>communes voisines, où des maisons ont été fissurées voire effondrées</strong>… »</p>
+          </div>
+          <div class="confr-verdict">
+            <div class="vd-label">Experts Amphoux / Ingesurf</div>
+            <p><p><strong>Aucun cas documenté cité.</strong> Les experts <strong>Amphoux et Ingésurf</strong> ont réalisé des chantiers comparables — abords de la <strong>Maison Carrée de Nîmes</strong>, place du <strong>Duché d'Uzès</strong>, centre de la <strong>Couvertoirade</strong> — sans <strong>aucun effondrement</strong>. Les travaux sur le réseau d'eau au début des années 2000 à Saint-Bauzille n'ont entraîné <strong>aucun effondrement</strong> non plus.</p>
+
+<p>Les risques sont <strong>identifiés et contractuellement encadrés</strong> dès la conception du projet. Les professionnels l'avaient anticipé. Les marchés <strong>signés par la commune, par M. le maire</strong>, prévoyaient un <strong>constat d'huissier systématique</strong> à la charge de l'entreprise avant tout démarrage, et un <strong>blindage obligatoire des tranchées</strong> dès que les seuils réglementaires étaient atteints. <strong>Les pièces du marché le prouvent.</strong></p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PROBLÈME 3 : RÉUNION IMPROVISÉE -->
+  <section>
+    <div class="container">
+      <div class="reveal">
+        <div class="sec-label"><span class="sec-num-badge badge-red">3</span>Improvisation et incohérence</div>
+        <h2 class="red">13 décembre 2025 :<br>un « Plan B » sans étude,<br>sans vote, sans financement.</h2>
+        <div class="rule-line" style="color:var(--red);"></div>
+      </div>
+      <div class="reveal">
+        <p style="font-size:17px;color:var(--ink-2);line-height:1.65;margin-bottom:20px;">Tardivement, conscient que la Grand Rue pouvait devenir un enjeu électoral, le maire organise une réunion publique sur place, au fond de la grand rue, <strong>13 décembre 2025</strong>. Il y présente oralement, pour la première fois, une solution alternative — jamais soumise au Conseil Municipal, ne reposant sur aucune étude technique publiée, avec un chiffrage sans source vérifiable.</p>
+      </div>
+      <div class="reveal">
+        <div class="chrono-track">
+
+          <div class="chrono-row row-fail">
+            <div class="c-dot" style="background:var(--amber);color:#fff;">«</div>
+            <div class="c-body">
+              <div class="c-date">13 décembre 2025 — Déclaration publique du maire</div>
+              <div class="c-title">La condition du passage à l'acte, posée par le maire lui-même.</div>
+              <div class="c-desc"><p>En réunion publique, après avoir arrêté le projet Grand Rue en invoquant des <strong>risques techniques graves</strong>, M. le maire déclare : <em>« Avec <strong>80 % de subventions</strong>, je lançais sans hésiter. »</em> <strong>Cette phrase est décisive.</strong> Un risque technique réel <strong>ne disparaît pas avec de l'argent</strong>. En posant lui-même la condition en termes financiers, le maire reconnaît que <strong>le blocage n'était pas technique</strong>. Or ces financements existaient. L'<strong>Agence de l'Eau</strong> finance jusqu'à <strong>80 %</strong> les projets de désimperméabilisation. Les labellisations <strong>Bourg-Centre</strong> et <strong>Plus Fraîche Ma Ville</strong>, obtenues en 2024, ouvraient des droits sur ce type de chantier. Obtenir ces financements exige un <strong>travail de dossier sérieux</strong>, de la méthode, et la capacité à trouver des <strong>guichets alternatifs</strong> lorsque le premier refus tombe. Les comptes officiels 2024 montrent que <strong>300 € ont été dépensés en études</strong> sur l'ensemble de l'exercice. <strong>Le projet n'a pas été arrêté faute de solution. Il a été arrêté faute de l'avoir cherchée.</strong></div>
+            </div>
+          </div>
+
+          <div class="chrono-row row-fail">
+            <div class="c-dot c-fail">✕</div>
+            <div class="c-body">
+              <div class="c-date">Plan B — Sans base technique ni délibération</div>
+              <div class="c-title">Une solution sortie du chapeau.</div>
+              <div class="c-desc">Le « Plan B » présenté ce jour-là : ni étude d'ingénierie publiée, ni note hydraulique (comment les eaux pluviales sont-elles évacuées ?), ni chiffrage sourcé, ni présentation préalable en Conseil Municipal, ni consultation des entreprises déjà contractantes. C'est l'exact opposé de la méthode qui avait produit le projet initial.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="score-grid" style="grid-template-columns:repeat(auto-fit,minmax(140px,1fr));margin-top:20px;">
+          <div class="score-card red"><div class="sc-label">Crédits 2024 non utilisés</div><div class="sc-val">640 000 €</div></div>
+          <div class="score-card red"><div class="sc-label">Dépenses études 2024</div><div class="sc-val">300 €</div></div>
+          <div class="score-card green"><div class="sc-label">Subventions déjà obtenues</div><div class="sc-val">435 000 €</div></div>
+          <div class="score-card navy"><div class="sc-label">Épargne brute commune</div><div class="sc-val">552 000 €</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOTRE MÉTHODE -->
+  <section class="bg-alt">
+    <div class="container">
+      <div class="reveal">
+        <div class="sec-label" style="color:var(--navy-3);margin-bottom:12px;">Notre engagement</div>
+        <h2 style="margin-bottom:20px;">Nous ne gérerons pas ce dossier de cette façon.</h2>
+        <div class="rule-line"></div>
+      </div>
+      <div class="reveal">
+        <p style="font-size:17px;color:var(--ink-2);line-height:1.7;margin-bottom:24px;">La Grand Rue n'est pas un dossier périphérique. C'est l'artère principale de la commune — <strong>25 % des habitants</strong>, le commerce, le tourisme, l'identité du village. Son état de délabrement avancé appelle une réponse professionnelle, transparente et financée. Voici notre méthode.</p>
+      </div>
+
+      <div class="reveal">
+        <div style="display:grid;gap:12px;">
+
+          <div class="box box-navy">
+            <div class="box-label">① Transparence immédiate</div>
+            <p>Publication du diagnostic AVP complet, du rapport caméra réseau EU Sud, et de l'ensemble des délibérations liées au projet dès notre prise de fonction. Les habitants ont le droit de savoir ce que leurs impôts ont financé.</p>
+          </div>
+
+          <div class="box box-navy">
+            <div class="box-label">② Poursuite active des subventions</div>
+            <p>Instruction complète du volet désimperméabilisation auprès de l'Agence de l'Eau (jusqu'à 80 % de financement). Activation des droits ouverts par les labélisations Bourg-Centre et Plus Fraîche Ma Ville. Sollicitation du Département 34 sur les volets eau et social. Plans de financement supplétifs étudiés avant tout arbitrage.</p>
+          </div>
+
+          <div class="box box-navy">
+            <div class="box-label">③ Phasage rigoureux et maîtrisé</div>
+            <p>Travaux divisés en tranches finançables, étalés sur plusieurs exercices budgétaires. Chaque tranche votée en Conseil Municipal avec son plan de financement complet. Les riverains informés à chaque étape — pas après.</p>
+          </div>
+
+          <div class="box box-navy">
+            <div class="box-label">④ Gouvernance citoyenne</div>
+            <p>Comité de suivi constitué dès 2026, associant riverains, commerçants et élus. Reporting public et régulier. Aucune décision structurante sans concertation préalable.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top:28px;">
+        <div class="box box-red">
+          <p style="font-size:17px;font-weight:700;color:var(--navy);line-height:1.5;">La Grand Rue attend depuis cinq ans. Un accord rompu, une pétition ignorée, des affirmations sans source publiées dans le bulletin municipal. Notre village mérite mieux — et nous le ferons.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /main-grand-rue -->
+
+
+<!-- ════════════════════════════════════════════════
+     ONGLET 3 — FAQ
+════════════════════════════════════════════════ -->
+<div id="main-faq" class="main-section">
+
+  <section>
+    <div class="container">
+      <div class="sec-label" style="color:var(--navy-3);margin-bottom:12px;">Dix questions. Dix réponses factuelles.</div>
+      <h2 style="margin-bottom:10px;">Ce que les Saint-Bauzillois<br>ont le droit de savoir.</h2>
+      <p style="font-size:17px;color:var(--ink-2);max-width:600px;line-height:1.65;">Les questions circulent. Voici les réponses exactes — pièces à l'appui (documents officiels, comptes de la commune et marchés signés).</p>
+    </div>
+  </section>
+
+  <section class="bg-alt">
+    <div class="container">
+      <div class="faq-list">
+
+        <!-- Q1 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge">Grand Rue</span>
+            <span class="faq-q-text">La Grand Rue : où en est-on vraiment ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p>Mme Motard a porté ce dossier de bout en bout depuis fin 2022 — études, coordination avec les bureaux d'étude, et obtention de <strong>435 000 € de subventions</strong> (Agence de l'Eau, Région, Fonds verts, Communauté de communes). Notre engagement : relancer les travaux de qualité avec un phasage rigoureux, la poursuite active des financements et une gouvernance transparente avec les riverains.</p>
+            <p>Ce que le programme du maire sortant ne dit pas : le béton cyclopéen, plan "B" improvisé pour la voirie est <strong>imperméable</strong>. Or l'Agence de l'Eau subventionne jusqu'à 80 % les revêtements drainants — et rien pour les revêtements imperméables. En choisissant cette solution technique, le maire sortant semble lui-même se privé du principal financement disponible. Son programme parle de désimperméabilisation dans les espaces publics, et retient du béton imperméable pour la rue principale. Ce n'est pas une politique de financement — c'est son absence.</p>
+            <div class="faq-key">Ce que nous pouvons montrer : des études engagées, des marchés signés, et 435 000 € de subventions obtenues pour lancer un projet de qualité.</div>
+            <div class="faq-key" style="background:linear-gradient(180deg,#fff9f2 0%,#fdf1e4 100%);border-color:rgba(180,121,29,.16);border-left-color:var(--amber);color:#8a5a00;">Concrètement, pour vous : une rue plus sûre, mieux financée, et un chantier pensé pour durer — pas une solution improvisée qui coûtera plus cher demain.</div>
+            <div class="faq-key">→ Toute la chronologie, les documents et les contre-vérités de l'éditorial BM N°47 sont détaillés dans l'<a href="#" onclick="activateMainTab('tab-grand-rue','main-grand-rue',false);return false;" style="color:var(--navy);font-weight:700;">onglet Grand Rue</a>.</div>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge">PLU</span>
+            <span class="faq-q-text">Pas de PLU : Saint-Bauzille est-elle vraiment protégée ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p>Le maire sortant, M. Alle présente l'absence de PLU comme un choix de protection. Le Code de l'urbanisme, les experts et l'immense majorité des élus de France disent le contraire. <strong>Plus de 85 % des communes de l'Hérault de taille comparable ont un PLU</strong> — ce n'est pas un hasard.</p>
+            <p>Sans PLU, Saint-Bauzille est soumise au Règlement National d'Urbanisme : les permis de construire sont délivrés <strong>au nom de l'État</strong>, pas de la commune. Aucun zonage propre, aucune règle locale pour maîtriser la densification ou protéger les espaces agricoles. De plus, le SCoT en cours (échéance 2027) imposera une mise en compatibilité : sans PLU élaboré en amont, Saint-Bauzille ne pourra pas défendre ses choix dans la négociation intercommunale.</p>
+            <div class="faq-key">Refuser le PLU, c'est confier à d'autres les décisions qui concernent notre village. → <a href="#" onclick="activateMainTab('tab-plu','main-plu',false);return false;" style="color:var(--navy);font-weight:700;">Analyse complète dans l'onglet PLU</a>.</div>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border);">STEP</span>
+            <span class="faq-q-text">Pourquoi les permis de construire sont-ils bloqués depuis 2022 ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p>Depuis le <strong>1er septembre 2022</strong>, un rapport préfectoral a constaté les dysfonctionnements de la station d'épuration : fuites des lagunes (~42 m³/jour), lits d'infiltration saturés, drains mal posés, radier cassé <em>(expertise STPB 000-30, 08/12/2025)</em>. Conséquence directe : <strong>les permis de construire ont été bloqués</strong> — affectant habitants et propriétaires souhaitant construire ou rénover.</p>
+            <p>L'exposition financière est estimée à <strong>377 000 € TTC</strong> (235 835 € de travaux + 141 579 € d'expertise). Ce dossier était à l'origine très favorable à la commune — il s'agit de malfaçons. Deux décisions de l'équipe sortante ont affaibli cette position : la <strong>levée des réserves techniques</strong> sans garanties suffisantes lors de la réception des ouvrages, et l'<strong>absence de contrat d'entretien</strong> que les parties adverses réclament depuis deux ans — élément clé pour établir les responsabilités.</p>
+            <div class="faq-key">Ce que nous pouvons montrer : un rapport préfectoral, une expertise technique, et une estimation financière du problème à traiter — consultables en mairie.</div>
+            <div class="faq-key" style="background:linear-gradient(180deg,#fff9f2 0%,#fdf1e4 100%);border-color:rgba(180,121,29,.16);border-left-color:var(--amber);color:#8a5a00;">Concrètement, pour vous : des permis retardés, des projets bloqués, et une commune qui paie le prix de l'inaction.</div>
+            <div class="faq-key" style="border-left-color:var(--red);background:var(--red-bg);color:var(--red);">Qui a levé les réserves de garantie ? Où est le dossier d'entretien de la STEP ? Le juge tranchera — mais ces questions méritent des réponses publiques. Notre engagement dès 2026 : faire la lumière sur ce dossier et mandater une expertise juridique pour limiter le coût pour les contribuables.</div>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge">Finances</span>
+            <span class="faq-q-text">Pas d'impôts, pas d'emprunt — mais pas de subventions non plus ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+        <p>Le maire sortant promet de ne pas augmenter les impôts et de ne pas emprunter. Son programme est <strong>muet</strong> sur toute démarche active de recherche de <strong>financements extérieurs</strong>. Cela signifie une seule chose : <strong>tout projet sera financé sur les réserves de la commune — c'est-à-dire vos impôts passés.</strong></p>
+        <p>La comparaison est simple. La taxe foncière rapporte <strong>550 000 € par an</strong> à Saint-Bauzille. En trois ans comme adjointe, Mme Motard a obtenu <strong>1,5 million d'euros de subventions</strong> — soit l'équivalent de <strong>trois ans de taxe foncière</strong>. Trois ans d'impôts que les Saint-Bauzillois <strong>n'ont pas eu à débourser</strong>. <strong>Chaque euro de subvention est un euro que vous n'avez pas payé. Le choix est là.</strong></p>            <div class="faq-key">Ne pas chercher de financements, ce n’est pas de la prudence — c’est autant d’argent en moins pour le village.</div>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge">Sécurité</span>
+            <span class="faq-q-text">La sécurité : des caméras suffisent-elles ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p>Le maire sortant se félicite d'avoir fait de Saint-Bauzille le village « le mieux équipé du canton en caméras de surveillance ». Cet investissement (50 000 € au BP 2025) génère des coûts de fonctionnement récurrents non chiffrés dans son programme. Mais le problème est plus profond : <strong>une caméra ne prévient pas — elle constate.</strong></p>
+            <p>Une politique de sécurité efficace s'appuie sur la prévention, la médiation sociale, la présence policière de terrain et le lien avec les habitants.</p>
+            <div class="faq-key">Notre proposition : soutenir la Police Municipale pluri-communale créée en 2024, étudier un 2ème poste de policier pour élargir les horaires soir/week-end, soutenir le Conseil Local de Sécurité et de Prévention de la Délinquance, et mettre en place des référents de quartier. Agir sur les causes — pas seulement enregistrer les effets.</div>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge">Équipements</span>
+            <span class="faq-q-text">Pump track, terrain de volley, club house — mais où ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p>Le programme du maire sortant promet un pump track, un demi-terrain de basket, un terrain de volley, un club house. <strong>Aucune emprise foncière n'est identifiée.</strong> Or un pump track nécessite 500 à 800 m², un club house aux normes ERP génère des charges annuelles non budgétées (entretien, sécurité, responsabilité). Par ailleurs, Le maire sortant dit refuser tout nouveau lotissement et toute cession foncière.</p>
+            <div class="faq-key">L'espace ne se crée pas par déclaration. Chacune de nos propositions d'équipement est accompagnée d'une localisation, d'un chiffrage en coût complet et d'un plan de financement.</div>
+          </div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge">Environnement</span>
+            <span class="faq-q-text">Végétalisation et béton cyclopéen : peut-on promettre les deux ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p>Le programme du maire sortant promeut la désimperméabilisation place du Christ et à l'espace Lacan — et retient simultanément du <strong>béton imperméable</strong> pour la Grand Rue, qui leur est adjacente. Cette contradiction technique ferme la porte aux financements de l'Agence de l'Eau (jusqu'à 80 % pour les revêtements drainants) et ne résout pas la gestion des eaux pluviales lors des épisodes cévenols.</p>
+            <div class="faq-key">Aucune note hydraulique n'a été publiée. Des revêtements perméables homologués pour voirie circulée existent — nous les étudierons sérieusement, parce que le bon choix technique est aussi le choix le plus finançable.</div>
+          </div>
+        </div>
+
+        <!-- Q8 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge">Budget</span>
+            <span class="faq-q-text">Le programme du maire sortant chiffre-t-il vraiment ses engagements ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p>Non. Le programme annonce de nombreux équipements sans jamais indiquer leur coût de fonctionnement annuel : maintenance des caméras, entretien du pump track, normes ERP du club house, logistique des festivités, personnel de la recyclerie... Ce silence n'est pas anodin. Il cache une <strong>dette grise</strong> : tout ce qu'on n'entretient pas convenablement finira par coûter beaucoup plus cher.</p>
+            <div class="faq-key">Reporter un entretien, c'est créer une dette cachée que l'on transmet aux habitants de demain. Notre engagement : publier pour chaque projet le coût de fonctionnement estimé sur six ans. Aucun engagement sans chiffrage complet.</div>
+          </div>
+        </div>
+
+        <!-- Q9 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge" style="background:var(--red-bg);color:var(--red);border-color:var(--red-border);">Intox</span>
+            <span class="faq-q-text">Votre programme prévoit-il de créer un embarcadère sur le plan d'eau ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p><strong>Non.</strong> Notre programme ne prévoit pas la construction d'un embarcadère. Cette affirmation, diffusée à l'oral et par écrit par le maire sortant et son équipe, est <strong>une fausse information</strong>. Elle illustre une méthode de campagne : attribuer à notre liste des projets coûteux et inutiles pour la discréditer.</p>
+            <div class="faq-key" style="border-left-color:var(--red);background:var(--red-bg);color:var(--red);">Notre programme est public, précis et consultable — chaque engagement y est formulé, localisé et chiffré. Nous ne promettons que ce que nous pouvons tenir, financer et expliquer. La désinformation ne nous appartient pas.</div>
+          </div>
+        </div>
+
+        <!-- Q10 -->
+        <div class="faq-item">
+          <button class="faq-q">
+            <span class="faq-badge" style="background:var(--navy-light);color:var(--navy);border-color:rgba(42,74,138,.15);">Synthèse</span>
+            <span class="faq-q-text">En résumé : quelle est la vraie différence entre les deux listes ?</span>
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span>
+          </button>
+          <div class="faq-a">
+            <p>Une différence de méthode, de travail et de connaissance des dossiers. M. Alle, pourtant maire sortant, promet sans chiffrer, annonce sans localiser, et refuse les outils — PLU, subventions, transparence budgétaire — qui permettent de tenir les promesses. Mme Motard a démontré en trois ans ce que la méthode produit concrètement : <strong>1,5 M€ obtenus pour le village</strong>, des dossiers instruits, des projets prêts à être livrés.</p>
+            <div class="faq-key">Un programme solide ne se juge pas à ses intentions — il se juge à la cohérence entre ses objectifs, ses moyens et la vérité de ses chiffres.</div>
+          </div>
+        </div>
+
+      </div><!-- /faq-list -->
+    </div>
+  </section>
+
+</div><!-- /main-faq -->
+
+
+<section class="cap-section" aria-label="Notre cap pour Saint-Bauzille">
+    <div class="cap-inner container">
+      <div class="cap-kicker">Saint Bau Ensemble · Notre cap 2026–2032</div>
+      <h2 class="cap-title">Notre cap pour Saint-Bauzille</h2>
+      <p class="cap-sub">Cinq engagements concrets. Faisables. Vérifiables.</p>
+
+      <div class="cap-list">
+        <div class="cap-item">
+          <div class="cap-num">1</div>
+          <div class="cap-copy"><strong>Relancer le PLU</strong> — Redonner au village la maîtrise de son urbanisme avant l'entrée en vigueur du SCoT.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-num">2</div>
+          <div class="cap-copy"><strong>Financer avant d'engager</strong> — 1,5 M€ obtenus pour le village entre 2021 et 2025. Chercher les financements avant d'abandonner deviendra la règle.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-num">3</div>
+          <div class="cap-copy"><strong>Reprendre la Grand Rue sur des bases solides</strong> — phasage publié, financement identifié, choix techniques assumés.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-num">4</div>
+          <div class="cap-copy"><strong>Décider en transparence</strong> — coûts, subventions et délais rendus publics avant le vote du conseil.</div>
+        </div>
+        <div class="cap-item">
+          <div class="cap-num">5</div>
+          <div class="cap-copy"><strong>Construire avec vous</strong> — réunions publiques sur les projets structurants, conseil municipal des jeunes, commissions ouvertes.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div class="finale">
     <div class="container">
       <p style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px;">Anne-Marie Motard · Saint Bau Ensemble</p>
       <h2>Lancer le PLU dès 2026.</h2>
@@ -1961,9 +2573,6 @@ et <strong>sous-estime la portée du projet</strong>.</p>
       <a class="cta-btn" href="mailto:stbau.ensemble@gmail.com">stbau.ensemble@gmail.com</a>
     </div>
   </div>
-
-</div><!-- /main-faq -->
-
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
