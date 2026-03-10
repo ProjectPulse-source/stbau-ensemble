@@ -160,82 +160,148 @@ body {
 }
 
 /* ══════════════════════════════════════════
-   MAIN NAV
+   MAIN NAV — Version C / premium éditoriale
 ══════════════════════════════════════════ */
 .main-nav {
   position: sticky; top: 0; z-index: 200;
-  background: var(--navy);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,0) 30%),
+    linear-gradient(180deg, #132a57 0%, #0f2044 100%);
   border-bottom: 1px solid rgba(255,255,255,.12);
   display: flex; align-items: stretch;
-  box-shadow: 0 2px 16px rgba(15,32,68,.25), inset 0 1px 0 rgba(255,255,255,.08);
+  gap: 0;
+  box-shadow:
+    0 14px 34px rgba(15,32,68,.28),
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(255,255,255,.04);
 }
 .nav-brand {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 10px 20px; gap: 2px;
-  border-right: 1px solid rgba(255,255,255,.12);
+  min-width: 92px;
+  padding: 14px 16px 13px;
+  gap: 3px;
+  border-right: 1px solid rgba(255,255,255,.14);
   flex-shrink: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,.16) 0%, rgba(0,0,0,.08) 100%);
+  box-shadow: inset -1px 0 0 rgba(255,255,255,.05);
 }
 .nav-brand-list {
-  font-size: 10px; font-weight: 700; letter-spacing: .1em;
-  text-transform: uppercase; color: rgba(255,255,255,.9); line-height: 1.2;
+  font-size: 11px; font-weight: 800; letter-spacing: .11em;
+  text-transform: uppercase; color: rgba(255,255,255,.96); line-height: 1.18;
   white-space: nowrap;
 }
 .nav-brand-dot {
-  width: 5px; height: 5px; border-radius: 50%;
+  width: 6px; height: 6px; border-radius: 50%;
   background: #ff453a; margin: 2px auto;
+  box-shadow: 0 0 0 4px rgba(255,69,58,.12);
   animation: blink 2s infinite;
 }
 .nav-brand-date {
-  font-size: 10px; color: rgba(255,255,255,.45); white-space: nowrap;
+  font-size: 10px; font-weight: 600;
+  color: rgba(255,255,255,.56); white-space: nowrap; letter-spacing: .04em;
 }
 .main-tab-btn {
-  flex: 1; padding: 16px 20px;
+  position: relative;
+  flex: 1;
+  padding: 15px 20px 14px;
   font-family: var(--font);
-  font-size: clamp(13px,1.3vw,15px); font-weight: 500;
-  color: rgba(255,255,255,.82);
-  background: linear-gradient(180deg, rgba(129,145,166,.28) 0%, rgba(94,108,129,.22) 100%);
+  font-size: clamp(13px,1.3vw,15px); font-weight: 600;
+  color: rgba(255,255,255,.84);
+  background: linear-gradient(180deg, rgba(255,255,255,.10) 0%, rgba(255,255,255,.04) 100%);
   border: none;
-  border-left: 1px solid rgba(255,255,255,.22);
-  border-right: 1px solid rgba(255,255,255,.14);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.08);
-  cursor: pointer; transition: color .18s ease, background .18s ease, box-shadow .18s ease;
+  border-left: 1px solid rgba(255,255,255,.15);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+  cursor: pointer;
+  transition: transform .18s ease, color .18s ease, background .18s ease, box-shadow .18s ease, border-color .18s ease;
   letter-spacing: -.01em; line-height: 1.25; text-align: center;
-  display: flex; flex-direction: column; align-items: center; gap: 3px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
   border-bottom: 3px solid transparent;
+}
+.main-tab-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,0));
+  opacity: .38;
+  pointer-events: none;
+}
+.main-tab-btn::after {
+  content: '';
+  position: absolute; left: 18px; right: 18px; bottom: 0;
+  height: 2px; border-radius: 999px;
+  background: rgba(255,255,255,.0);
+  transition: background .18s ease, transform .18s ease;
+  transform: scaleX(.72);
 }
 .main-tab-btn:hover {
   color: #ffffff;
-  background: linear-gradient(180deg, rgba(146,163,185,.34) 0%, rgba(108,123,145,.28) 100%);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.14);
+  background: linear-gradient(180deg, rgba(255,255,255,.14) 0%, rgba(255,255,255,.06) 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.08), inset 0 0 0 1px rgba(255,255,255,.06);
 }
 .main-tab-btn.active {
+  z-index: 2;
   color: #ffffff;
-  border-bottom-color: #ffffff;
-  background: linear-gradient(180deg, rgba(167,181,201,.38) 0%, rgba(122,137,158,.32) 100%);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,.22);
+  transform: translateY(-4px);
+  border-bottom-color: rgba(255,255,255,.0);
+  background: linear-gradient(180deg, rgba(176,191,213,.38) 0%, rgba(109,126,151,.26) 100%);
+  box-shadow:
+    0 14px 24px rgba(7,15,34,.22),
+    0 3px 0 rgba(255,255,255,.92),
+    inset 0 1px 0 rgba(255,255,255,.22),
+    inset 0 0 0 1px rgba(255,255,255,.12);
   font-weight: 700;
 }
-.tab-super {
-  font-size: 10px; font-weight: 600; letter-spacing: .08em;
-  text-transform: uppercase; opacity: .55; line-height: 1;
+.main-tab-btn.active::after {
+  background: rgba(255,255,255,.98);
+  transform: scaleX(1);
 }
-.main-tab-btn.active .tab-super { opacity: .75; }
+#tab-plu.active::after { background: rgba(125,167,255,.95); }
+#tab-grand-rue.active::after { background: rgba(181,43,30,.95); }
+#tab-faq.active::after { background: rgba(255,180,72,.95); }
+.tab-super {
+  font-size: 10px; font-weight: 700; letter-spacing: .085em;
+  text-transform: uppercase; opacity: .62; line-height: 1;
+}
+.main-tab-btn.active .tab-super { opacity: .86; }
+.tab-main {
+  font-size: clamp(13px,1.3vw,15px);
+  font-weight: inherit;
+  line-height: 1.18;
+  max-width: 20ch;
+}
 .tab-sub {
-  display: block;
-  margin-top: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 3px;
   font-size: 13px;
-  font-weight: 800;
-  line-height: 1.1;
+  font-weight: 900;
+  line-height: 1.05;
   letter-spacing: -.01em;
 }
-.tab-sub.red { color: var(--red); }
-.tab-main { font-size: clamp(13px,1.3vw,15px); font-weight: inherit; line-height: 1.2; }
+.tab-sub::before {
+  content: '';
+  width: 5px; height: 5px; border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 4px rgba(181,43,30,.12);
+}
+.tab-sub.red { color: #da3a2c; }
+.main-tab-btn.active .tab-sub.red { color: #ff4c3b; }
 
+@media(max-width:900px){
+  .nav-brand { min-width: 82px; padding: 12px 12px; }
+  .main-tab-btn.active { transform: translateY(-3px); }
+}
 @media(max-width:600px){
-  .main-nav { padding: 0 4px; gap: 0; }
-  .main-tab-btn { padding: 12px 8px; }
+  .main-nav { padding: 0; }
+  .nav-brand { min-width: 72px; padding: 10px 10px; }
+  .main-tab-btn {
+    padding: 12px 8px 11px;
+    gap: 3px;
+  }
+  .main-tab-btn.active { transform: translateY(-2px); }
   .tab-super { display: none; }
   .nav-brand-date { display: none; }
+  .tab-sub { font-size: 12px; }
 }
 
 /* ══════════════════════════════════════════
@@ -540,31 +606,87 @@ em { font-style: italic; }
 ══════════════════════════════════════════ */
 .plu-inner-tabs {
   position: sticky; top: 52px; z-index: 100;
-  background: rgba(255,255,255,.95);
+  background: rgba(255,255,255,.96);
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
-  display: flex; border-bottom: 2px solid var(--rule);
+  display: flex; gap: 12px;
+  padding: 14px 24px 0;
+  border-bottom: none;
+  box-shadow: inset 0 -1px 0 rgba(15,32,68,.08);
 }
 .plu-tab-btn {
-  flex: 1; padding: 16px 24px;
+  flex: 1; min-height: 82px; padding: 16px 22px 18px;
   font-family: var(--font);
-  font-size: clamp(14px,1.4vw,16px); font-weight: 500;
-  color: var(--ink-3); background: transparent; border: none;
+  font-size: clamp(14px,1.4vw,16px); font-weight: 600;
+  color: var(--ink-3); background: rgba(255,255,255,.72);
+  border: 1px solid rgba(15,32,68,.12);
+  border-bottom: none;
+  border-radius: 18px 18px 0 0;
   cursor: pointer; transition: all .18s ease;
   letter-spacing: -.01em; line-height: 1.3; text-align: center;
-  display: flex; flex-direction: column; align-items: center; gap: 4px;
-  border-bottom: 3px solid transparent; margin-bottom: -2px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px;
+  box-shadow: 0 -1px 0 rgba(255,255,255,.75) inset;
 }
-.plu-tab-btn:hover { background: var(--bg-2); color: var(--ink); }
-.plu-tab-btn.active-law  { color: var(--navy); border-bottom-color: var(--navy); background: var(--navy-light); font-weight: 700; }
-.plu-tab-btn.active-alle { color: var(--red);  border-bottom-color: var(--red);  background: var(--red-bg); font-weight: 700; }
-.plu-tab-btn .tab-super-plu { font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; opacity: .5; line-height: 1; }
-.plu-tab-btn.active-law  .tab-super-plu { opacity: .7; color: var(--navy); }
-.plu-tab-btn.active-alle .tab-super-plu { opacity: .7; color: var(--red); }
+.plu-tab-btn:hover {
+  background: rgba(255,255,255,.92); color: var(--ink);
+  border-color: rgba(15,32,68,.18);
+}
+.plu-tab-btn.active-law  {
+  color: var(--navy); background: linear-gradient(180deg, rgba(42,74,138,.10), rgba(42,74,138,.05));
+  border-color: rgba(42,74,138,.20); box-shadow: 0 12px 24px rgba(42,74,138,.08), 0 -1px 0 rgba(255,255,255,.78) inset;
+}
+.plu-tab-btn.active-alle {
+  color: var(--red); background: linear-gradient(180deg, rgba(181,43,30,.10), rgba(181,43,30,.05));
+  border-color: rgba(181,43,30,.20); box-shadow: 0 12px 24px rgba(181,43,30,.08), 0 -1px 0 rgba(255,255,255,.78) inset;
+}
+.plu-tab-btn .tab-super-plu {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  opacity: .78; line-height: 1;
+}
+.plu-tab-btn .tab-main { max-width: 22ch; }
+.plu-tab-btn.active-law  .tab-super-plu { color: var(--navy); }
+.plu-tab-btn.active-alle .tab-super-plu { color: var(--red); }
+.plu-context-wrap {
+  position: sticky; top: 148px; z-index: 99;
+  background: rgba(255,255,255,.96);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  padding: 0 24px 14px;
+  box-shadow: inset 0 -1px 0 rgba(15,32,68,.08);
+}
+.plu-context-band {
+  max-width: 1180px; margin: 0 auto;
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 14px 18px 15px;
+  border-radius: 0 0 18px 18px;
+  border: 1px solid rgba(15,32,68,.10);
+  border-top: none;
+  background: rgba(255,255,255,.88);
+  box-shadow: 0 12px 24px rgba(15,32,68,.05);
+}
+.plu-context-band::before {
+  content: ''; width: 4px; align-self: stretch; border-radius: 999px; background: var(--red);
+}
+.plu-context-band.mode-law::before { background: var(--navy); }
+.plu-context-band.mode-alle { background: linear-gradient(180deg, rgba(181,43,30,.07), rgba(181,43,30,.03)); }
+.plu-context-band.mode-law  { background: linear-gradient(180deg, rgba(42,74,138,.07), rgba(42,74,138,.03)); }
+.plu-context-copy { display: grid; gap: 4px; }
+.plu-context-kicker {
+  font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3);
+}
+.plu-context-title {
+  font-size: clamp(15px,1.55vw,19px); line-height: 1.35; color: var(--ink); font-weight: 600;
+}
+@media(max-width:900px){
+  .plu-context-wrap { top: 144px; }
+}
 @media(max-width:600px){
-  .plu-inner-tabs { top: 48px; }
-  .plu-tab-btn { padding: 12px 10px; }
+  .plu-inner-tabs { top: 48px; gap: 8px; padding: 10px 12px 0; }
+  .plu-tab-btn { min-height: 72px; padding: 12px 10px 14px; }
   .tab-super-plu { display: none; }
+  .plu-context-wrap { top: 120px; padding: 0 12px 12px; }
+  .plu-context-band { padding: 12px 14px 13px; gap: 10px; border-radius: 0 0 16px 16px; }
+  .plu-context-title { font-size: 14px; }
 }
 .plu-tab-panel { display: none; }
 .plu-tab-panel.active { display: block; }
@@ -891,6 +1013,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="tab-main">Ce que dit<br>la réglementation</span>
     </button>
   </div>
+  <div class="plu-context-wrap" aria-live="polite">
+    <div class="plu-context-band mode-alle" id="plu-context-band">
+      <div class="plu-context-copy">
+        <div class="plu-context-kicker" id="plu-context-kicker">Lecture critique du tract</div>
+        <div class="plu-context-title" id="plu-context-title">Quatre affirmations, quatre vérifications documentées pour distinguer le discours de campagne des faits.</div>
+      </div>
+    </div>
+  </div>
 
   <!-- ── PANEL : RÉGLEMENTATION ── -->
   <div class="plu-tab-panel" id="panel-law">
@@ -951,22 +1081,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <div class="rule-line" style="color: var(--navy-3);"></div>
       </div>
       <div class="reveal">
-        <p>Depuis la loi ALUR (2014), l'ouverture d'une zone à urbaniser dans un PLU nécessite une <strong>OAP — Orientation d'Aménagement et de Programmation</strong>. Ce terme technique est au cœur d'une confusion importante dans le débat local.</p>
+        <p>Dans un PLU, une <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043978102" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;"><strong>OAP — Orientation d'Aménagement et de Programmation</strong></a> sert à encadrer l'aménagement d'un secteur. Ce terme technique est au cœur d'une confusion importante dans le débat local. Les OAP sont définies aux <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000043978102" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">articles L.151-6 et L.151-7 du Code de l'urbanisme</a>.</p>
         <div class="box box-navy">
           <div class="box-label">Ce qu'est une OAP</div>
-          <p>Un document d'<strong>orientation</strong> — non une règle impérative. Elle fixe des principes d'aménagement, des objectifs de qualité paysagère, des prescriptions d'accès. Elle encadre comment une zone doit être aménagée si elle est ouverte à la construction. <em>(Art. L151-6 et L151-7, Code de l'urbanisme)</em></p>
+          <p>Un document d'orientation et d'encadrement. Elle fixe des principes d'aménagement, des objectifs de qualité paysagère, des prescriptions d'accès ou d'organisation du secteur. Elle dit dans quel cadre une zone pourra être aménagée si elle est ouverte à la construction.</p>
         </div>
         <div class="box box-green">
           <div class="box-label">Ce que l'OAP permet</div>
-          <p>Fixer des <strong>règles de qualité</strong> que les constructeurs doivent respecter : orientation des bâtiments, continuité des espaces verts, intégration paysagère, accès piéton. Elle peut <strong>empêcher un lotissement anarchique</strong> autant qu'en encadrer un.</p>
+          <p>Fixer un cadre de qualité : implantation des constructions, continuité des espaces verts, intégration paysagère, accès piéton, organisation d'ensemble. Elle peut donc éviter une urbanisation désordonnée autant qu'encadrer un projet d'ensemble.</p>
         </div>
         <div class="box box-red">
           <div class="box-label">Ce que l'OAP n'est pas</div>
-          <p>L'OAP <strong>ne crée pas</strong> un lotissement. Un lotissement est une division foncière destinée à créer des lots à bâtir — c'est une démarche distincte, définie à l'art. L442-1 du Code de l'urbanisme. Les confondre est une erreur juridique élémentaire.</p>
-        </div>
-        <div class="box box-amber">
-          <div class="box-label">Point clé</div>
-          <p>C'est la <strong>commune</strong> qui décide quelles zones sont ouvertes à l'urbanisation — et donc où les OAP s'appliquent. L'OAP n'est pas imposée de l'extérieur : elle traduit les choix des habitants.</p>
+          <p>L'OAP ne crée pas, à elle seule, un lotissement. Un lotissement est une <a href="https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025019439" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none;">division foncière destinée à créer des lots à bâtir</a> : c'est une démarche distincte, définie à l'article L.442-1 du Code de l'urbanisme. Confondre les deux, c'est mélanger un cadre d'aménagement et une opération de division foncière.</p>
         </div>
       </div>
     </div>
@@ -1851,6 +1977,26 @@ if (hashTarget) {
 
 /* ── PLU SUB-TABS ── */
 var pluTabs = ['alle', 'law'];
+var pluContext = {
+  alle: {
+    kicker: 'Lecture critique du tract',
+    title: 'Quatre affirmations, quatre vérifications documentées pour distinguer le discours de campagne des faits.'
+  },
+  law: {
+    kicker: 'Lecture juridique',
+    title: 'Les outils d’urbanisme expliqués à partir des textes pour comprendre ce qu’ils permettent réellement.'
+  }
+};
+function updatePluContext(tab) {
+  var band = document.getElementById('plu-context-band');
+  var kicker = document.getElementById('plu-context-kicker');
+  var title = document.getElementById('plu-context-title');
+  if (!band || !kicker || !title || !pluContext[tab]) return;
+  band.classList.remove('mode-alle', 'mode-law');
+  band.classList.add('mode-' + tab);
+  kicker.textContent = pluContext[tab].kicker;
+  title.textContent = pluContext[tab].title;
+}
 pluTabs.forEach(function(tab) {
   var btn = document.getElementById('btn-' + tab);
   if (!btn) return;
@@ -1864,10 +2010,12 @@ pluTabs.forEach(function(tab) {
     panel.classList.add('active');
     btn.classList.add('active-' + tab);
     btn.setAttribute('aria-selected', 'true');
+    updatePluContext(tab);
     document.querySelector('.plu-inner-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
     revealPanel(panel);
   });
 });
+updatePluContext('alle');
 
 /* ── FAQ ── */
 document.querySelectorAll('.faq-q').forEach(function(q) {
