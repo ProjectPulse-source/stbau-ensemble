@@ -2065,7 +2065,7 @@ et <strong>sous-estime la portée du projet</strong>.</p>
       </div>
 
       <p class="f-contact-label">Questions ou infos de campagne :</p>
-      <a class="cta-btn" href="mailto:stbau.ensemble@gmail.com">stbau.ensemble@gmail.com</a>
+      <a class="cta-btn" href="/cdn-cgi/l/email-protection#5221263033277c373c21373f303e3712353f333b3e7c313d3f"><span class="__cf_email__" data-cfemail="e19295838094cf848f92848c838d84a1868c80888dcf828e8c">[email&#160;protected]</span></a>
     </div>
   </div>
 
@@ -2591,15 +2591,17 @@ et <strong>sous-estime la portée du projet</strong>.</p>
       </div>
 
       <p class="f-contact-label">Questions ou infos de campagne :</p>
-      <a class="cta-btn" href="mailto:stbau.ensemble@gmail.com">stbau.ensemble@gmail.com</a>
+      <a class="cta-btn" href="/cdn-cgi/l/email-protection#66151204071348030815030b040a0326010b070f0a4805090b"><span class="__cf_email__" data-cfemail="9ae9eef8fbefb4fff4e9fff7f8f6ffdafdf7fbf3f6b4f9f5f7">[email&#160;protected]</span></a>
     </div>
   </div>
+
+</div><!-- /main-faq -->
 
 <!-- ═══════════ FOOTER ═══════════ -->
 <footer>
   <p style="font-size:15px;font-weight:600;color:rgba(255,255,255,.55);margin-bottom:6px;">Anne-Marie Motard · Tête de liste · Saint Bau Ensemble</p>
   <p>Professeure d'université · Conseillère communautaire · Adjointe au maire 2021–2025 · Saint-Bauzille-de-Putois (Hérault, 34)</p>
-  <p style="margin-top:8px;font-size:16px;max-width:1100px;margin-left:auto;margin-right:auto;">Ces informations reposent sur des documents publics vérifiables : marchés publics, rapports d'analyse des offres, diagnostics AVP, délibérations et textes de loi. · <a href="mailto:stbau.ensemble@gmail.com">stbau.ensemble@gmail.com</a></p>
+  <p style="margin-top:8px;font-size:16px;max-width:1100px;margin-left:auto;margin-right:auto;">Ces informations reposent sur des documents publics vérifiables : marchés publics, rapports d'analyse des offres, diagnostics AVP, délibérations et textes de loi. · <a href="/cdn-cgi/l/email-protection#d8abacbab9adf6bdb6abbdb5bab4bd98bfb5b9b1b4f6bbb7b5"><span class="__cf_email__" data-cfemail="2a595e484b5f044f44594f4748464f6a4d474b434604494547">[email&#160;protected]</span></a></p>
 </footer>
 
 <div class="share-spacer"></div>
@@ -2621,7 +2623,7 @@ et <strong>sous-estime la portée du projet</strong>.</p>
 </div>
 
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function() {
 'use strict';
 
@@ -2793,19 +2795,33 @@ if (btnFb) btnFb.addEventListener('click', function() {
   while (walker.nextNode()) nodes.push(walker.currentNode);
 
   nodes.forEach(function(node) {
-    node.nodeValue = node.nodeValue
-      .replace(/\s*([;:!?])/g, '\u202F$1')
-      .replace(/«\s*/g, '«\u202F')
-      .replace(/\s*»/g, '\u202F»');
+     node.nodeValue = node.nodeValue
+      .replace(/ ([;:?!»])/g, '\u00a0$1')
+      .replace(/(«) /g, '$1\u00a0');
   });
 })();
-var btnCp = document.getElementById('copy-btn');
-if (btnCp) btnCp.addEventListener('click', function() {
-  navigator.clipboard.writeText(window.location.href).then(function() {
-    var lbl = document.getElementById('copy-label');
-    if (lbl) { lbl.textContent = 'Lien copié !'; setTimeout(function() { lbl.textContent = 'Copier le lien'; }, 2000); }
-  });
+
+/* ── COPY LINK ── */
+var copyBtn = document.getElementById('copy-btn');
+var copyLabel = document.getElementById('copy-label');
+if (copyBtn) copyBtn.addEventListener('click', function() {
+  var url = window.location.href;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(function() {
+      if (copyLabel) { copyLabel.textContent = 'Lien copié !'; }
+      setTimeout(function() { if (copyLabel) copyLabel.textContent = 'Copier le lien'; }, 2000);
+    }).catch(function() { fallbackCopy(url); });
+  } else { fallbackCopy(url); }
+  function fallbackCopy(u) {
+    var ta = document.createElement('textarea');
+    ta.value = u; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); if (copyLabel) { copyLabel.textContent = 'Lien copié !'; setTimeout(function() { copyLabel.textContent = 'Copier le lien'; }, 2000); } } catch(e) {}
+    document.body.removeChild(ta);
+  }
 });
 
 })();
 </script>
+</body>
+</html>
