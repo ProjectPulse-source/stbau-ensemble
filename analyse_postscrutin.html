@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saint-Bauzille 2026 — Analyse post-scrutin — Saint Bau Ensemble</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --bg: #f5f5f7;
+  --bg2: #fbfbfd;
+  --surface: #ffffff;
+  --border: #d2d2d7;
+  --border-light: #e8e8ed;
+  --text: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-tertiary: #aeaeb2;
+  --blue: #0071e3;
+  --blue-light: #e8f1fb;
+  --green: #28a745;
+  --green-light: #e6f4ea;
+  --red: #d93025;
+  --red-light: #fce8e6;
+  --orange: #f56300;
+  --orange-light: #fef3ea;
+  --purple: #7c3aed;
+  --purple-light: #ede9fe;
+  --radius: 18px;
+  --radius-sm: 10px;
+}
+
+html { -webkit-font-smoothing: antialiased; font-size: 16px; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+}
+
+/* ─── LAYOUT ─── */
+.page { max-width: 1080px; margin: 0 auto; padding: 0 32px 80px; }
+
+/* ─── TOP BANNER ─── */
+.top-banner {
+  background: var(--text);
+  color: var(--white);
+  padding: 12px 32px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.6);
+}
+.top-banner strong { color: white; }
+
+/* ─── RESULTS HEADER ─── */
+.results-header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border-light);
+  padding: 48px 32px 40px;
+}
+.results-header-inner { max-width: 1080px; margin: 0 auto; }
+
+.results-eyebrow {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 6px;
+}
+
+.results-headline {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.results-date {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+}
+
+/* SCORE CARDS */
+.score-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.score-card {
+  border-radius: var(--radius);
+  padding: 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+
+.score-card.winner {
+  background: var(--text);
+  color: white;
+}
+.score-card.loser {
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+}
+.score-card.winner .score-badge { background: rgba(255,255,255,0.15); color: rgba(255,255,255,0.8); }
+.score-card.loser .score-badge { background: var(--blue-light); color: var(--blue); }
+
+.score-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+.score-card.winner .score-name { color: white; }
+.score-card.loser .score-name { color: var(--text); }
+
+.score-list-name { font-size: 13px; margin-bottom: 20px; }
+.score-card.winner .score-list-name { color: rgba(255,255,255,0.5); }
+.score-card.loser .score-list-name { color: var(--text-secondary); }
+
+.score-pct {
+  font-size: 52px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.score-card.winner .score-pct { color: white; }
+.score-card.loser .score-pct { color: var(--blue); }
+
+.score-voix { font-size: 14px; }
+.score-card.winner .score-voix { color: rgba(255,255,255,0.6); }
+.score-card.loser .score-voix { color: var(--text-secondary); }
+
+.score-sieges {
+  position: absolute;
+  top: 24px; right: 24px;
+  text-align: right;
+}
+.score-sieges-val { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; }
+.score-card.winner .score-sieges-val { color: rgba(255,255,255,0.25); }
+.score-card.loser .score-sieges-val { color: var(--border); }
+.score-sieges-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
+.score-card.winner .score-sieges-label { color: rgba(255,255,255,0.3); }
+.score-card.loser .score-sieges-label { color: var(--text-tertiary); }
+
+/* PARTICIPATION BAR */
+.participation-block {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+.participation-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.participation-label { font-size: 13px; font-weight: 600; color: var(--text); }
+.participation-pct { font-size: 20px; font-weight: 800; letter-spacing: -0.03em; color: var(--text); }
+.participation-bar-track {
+  background: var(--border-light);
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+.participation-bar-winner {
+  background: var(--text);
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  position: relative;
+}
+.participation-bar-loser {
+  background: var(--blue);
+  height: 100%;
+  border-radius: 4px;
+  position: absolute;
+  right: 0; top: 0;
+}
+.participation-meta {
+  display: flex;
+  gap: 24px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.participation-meta span strong { color: var(--text); font-weight: 600; }
+
+/* COMPARISON 2020 */
+.comparison-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-top: 16px;
+  border: 1px solid var(--border-light);
+}
+.comparison-cell {
+  background: var(--white);
+  padding: 16px 18px;
+}
+.comparison-cell-label { font-size: 11px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.comparison-cell-val { font-size: 18px; font-weight: 700; letter-spacing: -0.02em; color: var(--text); }
+.comparison-cell-val.up { color: var(--green); }
+.comparison-cell-val.down { color: var(--red); }
+.comparison-cell-sub { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+
+/* ─── PAGE CONTENT ─── */
+.section { margin-top: 56px; }
+
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light);
+}
+
+.section-title {
+  font-size: clamp(22px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.section-sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 32px;
+  max-width: 640px;
+  line-height: 1.6;
+}
+
+/* STAT STRIP */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.stat-item {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: 20px 20px 16px;
+}
+.stat-item-val {
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat-item-val.blue { color: var(--blue); }
+.stat-item-val.red { color: var(--red); }
+.stat-item-val.green { color: var(--green); }
+.stat-item-val.orange { color: var(--orange); }
+.stat-item-label { font-size: 12px; color: var(--text-secondary); line-height: 1.4; }
+.stat-item-sub { font-size: 11px; color: var(--text-tertiary); margin-top: 4px; }
+
+/* CARD GRID */
+.card-grid { display: grid; gap: 16px; }
+.grid-2 { grid-template-columns: 1fr 1fr; }
+.grid-3-1 { grid-template-columns: 3fr 2fr; }
+.grid-1-1 { grid-template-columns: 1fr 1fr; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 28px 28px 24px;
+  position: relative;
+  overflow: hidden;
+}
+.card.span-2 { grid-column: 1 / -1; }
+
+.card-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  border-radius: 3px 3px 0 0;
+}
+.card-accent.blue { background: var(--blue); }
+.card-accent.green { background: var(--green); }
+.card-accent.red { background: var(--red); }
+.card-accent.orange { background: var(--orange); }
+.card-accent.purple { background: var(--purple); }
+
+.card-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.card-desc { font-size: 12px; color: var(--text-secondary); margin-bottom: 24px; line-height: 1.5; }
+.chart-wrap { position: relative; }
+
+/* CHIPS */
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 16px;
+}
+.chip.blue { background: var(--blue-light); color: var(--blue); }
+.chip.green { background: var(--green-light); color: var(--green); }
+.chip.red { background: var(--red-light); color: var(--red); }
+.chip.orange { background: var(--orange-light); color: var(--orange); }
+.chip.purple { background: var(--purple-light); color: var(--purple); }
+.chip::before { content: '↗'; font-size: 10px; }
+.chip.down::before { content: '↘'; }
+.chip.neutral::before { content: '→'; }
+
+/* MEDIAN VISUAL */
+.median-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  padding: 32px 0 20px;
+}
+.median-block { text-align: center; }
+.median-num { font-size: 68px; font-weight: 800; letter-spacing: -0.05em; line-height: 1; }
+.median-num.gray { color: #aeaeb2; }
+.median-num.dark { color: var(--text); }
+.median-desc { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+.median-sep { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.median-sep-arrow { font-size: 24px; color: var(--blue); }
+.median-sep-val { font-size: 15px; font-weight: 700; color: var(--blue); letter-spacing: -0.02em; }
+.median-sep-label { font-size: 10px; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* DONUT ROW */
+.donut-layout { display: flex; align-items: center; gap: 36px; margin-top: 8px; }
+.donut-wrap { position: relative; width: 180px; height: 180px; flex-shrink: 0; }
+.donut-center-abs {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  pointer-events: none;
+}
+.donut-center-val { font-size: 26px; font-weight: 800; color: var(--text); letter-spacing: -0.03em; }
+.donut-center-sub { font-size: 10px; color: var(--text-secondary); text-align: center; }
+.donut-items { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.donut-item { display: flex; align-items: center; gap: 10px; }
+.donut-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.donut-item-val { font-size: 22px; font-weight: 700; letter-spacing: -0.03em; }
+.donut-item-label { font-size: 12px; color: var(--text-secondary); }
+
+/* PROGRESS BARS */
+.progress-list { display: flex; flex-direction: column; gap: 14px; margin-top: 4px; }
+.progress-item {}
+.progress-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
+.progress-name { font-size: 13px; color: var(--text); font-weight: 500; }
+.progress-val { font-size: 14px; font-weight: 700; letter-spacing: -0.02em; }
+.progress-track { background: var(--bg); border-radius: 4px; height: 6px; overflow: hidden; }
+.progress-fill { height: 100%; border-radius: 4px; transition: width 0.8s ease; }
+
+/* SYNTHESIS BLOCK */
+.synthesis {
+  background: var(--text);
+  color: white;
+  border-radius: var(--radius);
+  padding: 48px 56px;
+  margin-top: 56px;
+  position: relative;
+  overflow: hidden;
+}
+.synthesis::before {
+  content: '"';
+  position: absolute;
+  top: -16px; left: 36px;
+  font-size: 180px;
+  font-weight: 900;
+  color: white;
+  opacity: 0.04;
+  line-height: 1;
+  font-family: Georgia, serif;
+}
+.synthesis-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 20px;
+}
+.synthesis-text {
+  font-size: clamp(18px, 2.5vw, 24px);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  position: relative;
+  z-index: 1;
+  color: rgba(255,255,255,0.92);
+}
+.synthesis-text em { font-style: normal; color: white; font-weight: 700; }
+.synthesis-divider { border: none; border-top: 1px solid rgba(255,255,255,0.1); margin: 32px 0; }
+.synthesis-limits { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+.synthesis-limits strong { color: rgba(255,255,255,0.65); font-weight: 600; }
+
+/* FOOTER */
+.footer {
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footer-left { font-size: 13px; }
+.footer-left strong { color: var(--text); display: block; margin-bottom: 2px; }
+.footer-left span { color: var(--text-secondary); }
+.footer-note { font-size: 11px; color: var(--text-tertiary); max-width: 480px; line-height: 1.6; }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+.card, .stat-item, .score-card, .synthesis { animation: fadeUp 0.5s ease both; }
+
+@media (max-width: 820px) {
+  .page { padding: 0 20px 60px; }
+  .results-header { padding: 36px 20px 32px; }
+  .score-row, .grid-2, .grid-3-1, .grid-1-1 { grid-template-columns: 1fr; }
+  .stat-strip { grid-template-columns: 1fr 1fr; }
+  .comparison-strip { grid-template-columns: 1fr 1fr; }
+  .synthesis { padding: 36px 28px; }
+  .donut-layout { flex-direction: column; }
+  .footer { flex-direction: column; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-banner">
+  <strong>CONFIDENTIEL</strong> · Saint Bau Ensemble · Note interne post-scrutin · 23 mars 2026
+</div>
+
+<!-- RESULTS HEADER -->
+<div class="results-header">
+  <div class="results-header-inner">
+
+    <div class="results-eyebrow">Municipales 2026 · Saint-Bauzille-de-Putois (Hérault, 34190)</div>
+    <div class="results-headline">Résultats &amp; Analyse</div>
+    <div class="results-date">1er tour · 15 mars 2026 · Conseil élu au premier tour</div>
+
+    <div class="score-row">
+      <div class="score-card winner">
+        <div class="score-badge">✓ Élu au 1er tour</div>
+        <div class="score-sieges"><div class="score-sieges-val">16</div><div class="score-sieges-label">sièges mun.</div></div>
+        <div class="score-name">Oscar Alle</div>
+        <div class="score-list-name">« Unis pour Saint-Bauzille »</div>
+        <div class="score-pct">63,21%</div>
+        <div class="score-voix">689 suffrages exprimés · 3 sièges communautaires</div>
+      </div>
+      <div class="score-card loser">
+        <div class="score-badge">Notre liste</div>
+        <div class="score-sieges"><div class="score-sieges-val">3</div><div class="score-sieges-label">sièges mun.</div></div>
+        <div class="score-name">Anne-Marie Motard</div>
+        <div class="score-list-name">« Saint Bau Ensemble »</div>
+        <div class="score-pct">36,79%</div>
+        <div class="score-voix">401 suffrages exprimés · 1 siège communautaire</div>
+      </div>
+    </div>
+
+    <div class="participation-block">
+      <div class="participation-row">
+        <div class="participation-label">Participation</div>
+        <div class="participation-pct">69,01%</div>
+      </div>
+      <div class="participation-bar-track">
+        <div style="position:relative; height:100%; display:flex;">
+          <div style="background:var(--text); width:63.21%; border-radius:4px 0 0 4px;"></div>
+          <div style="background:var(--blue); width:36.79%; border-radius:0 4px 4px 0;"></div>
+        </div>
+      </div>
+      <div class="participation-meta">
+        <span><strong>1 623</strong> inscrits</span>
+        <span><strong>1 120</strong> votants</span>
+        <span><strong>503</strong> abstentions (30,99%)</span>
+        <span><strong>12</strong> blancs · <strong>18</strong> nuls</span>
+        <span><strong>1 090</strong> suffrages exprimés</span>
+        <span><strong>Écart : 288 voix</strong></span>
+      </div>
+    </div>
+
+    <div class="comparison-strip">
+      <div class="comparison-cell">
+        <div class="comparison-cell-label">Oscar 2020</div>
+        <div class="comparison-cell-val">53,27%</div>
+        <div class="comparison-cell-sub">488 voix · 1 508 inscrits</div>
+      </div>
+      <div class="comparison-cell">
+        <div class="comparison-cell-label">Oscar 2026</div>
+        <div class="comparison-cell-val up">63,21%</div>
+        <div class="comparison-cell-sub">689 voix · +9,94 pts</div>
+      </div>
+      <div class="comparison-cell">
+        <div class="comparison-cell-label">Opposition 2020</div>
+        <div class="comparison-cell-val">46,72%</div>
+        <div class="comparison-cell-sub">428 voix · « St-Bau Naturellement »</div>
+      </div>
+      <div class="comparison-cell">
+        <div class="comparison-cell-label">Notre liste 2026</div>
+        <div class="comparison-cell-val down">36,79%</div>
+        <div class="comparison-cell-sub">401 voix · −9,93 pts</div>
+      </div>
+    </div>
+    <div style="font-size:11px; color:var(--text-tertiary); margin-top:8px;">⚠︎ 2020 se tient le 15 mars 2020, veille du 1er confinement national — abstention exceptionnelle en France (55%). La comparaison directe est méthodologiquement limitée.</div>
+
+  </div>
+</div>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- SECTION : CAMPAGNE -->
+  <div class="section">
+    <div class="section-label">01 · Données de campagne (repérage militant)</div>
+    <div class="section-title">Une base mobilisée solide — mais un angle mort hors repérage</div>
+    <div class="section-sub">Cette section repose sur le repérage militant des soutiens identifiés. Elle éclaire la campagne, mais n'a pas le même statut probatoire que les fichiers électoraux et d'émargement.</div>
+
+    <div style="display:flex; align-items:center; gap:12px; background:#fff8e6; border:1px solid #f0c040; border-radius:10px; padding:14px 18px; margin-bottom:28px; font-size:13px; color:#7a5c00;">
+      <span style="font-size:18px;">⚠</span>
+      <span><strong>Statut probatoire inférieur aux sections suivantes.</strong> Les "soutiens identifiés" résultent d'un repérage militant par nature incomplet — à distinguer des données issues des fichiers officiels (sections 02 à 05).</span>
+    </div>
+
+    <div class="stat-strip">
+      <div class="stat-item">
+        <div class="stat-item-val blue">89%</div>
+        <div class="stat-item-label">Taux de mobilisation<br>de notre base</div>
+        <div class="stat-item-sub">284 sur 319 soutiens identifiés</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item-val" style="color:var(--text-secondary)">91,5%</div>
+        <div class="stat-item-label">Taux de mobilisation<br>base Oscar</div>
+        <div class="stat-item-sub">118 sur 129 soutiens identifiés</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item-val red">+571</div>
+        <div class="stat-item-label">Voix Oscar hors<br>base identifiée</div>
+        <div class="stat-item-sub">vs +117 pour nous</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-item-val orange">+25</div>
+        <div class="stat-item-label">Avantage net<br>procurations</div>
+        <div class="stat-item-sub">35 AM · 10 Oscar · 25 indéterminées</div>
+      </div>
+    </div>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <div class="card-accent blue"></div>
+        <div class="card-title">Décomposition des 689 voix d'Oscar Alle</div>
+        <div class="card-desc">Sur 689 voix, 118 proviennent de soutiens identifiés effectivement mobilisés. Les 571 autres relèvent d'un électorat non identifié par le repérage militant — hors portée des deux bases cartographiées.</div>
+        <div class="chart-wrap" style="height:220px">
+          <canvas id="voixChart"></canvas>
+        </div>
+        <span class="chip blue neutral">L'écart s'est joué hors base identifiée des deux camps</span>
+      </div>
+      <div class="card">
+        <div class="card-accent orange"></div>
+        <div class="card-title">Les 72 procurations</div>
+        <div class="card-desc">Avantage net de ~25 voix en procurations. Insuffisant face à 288 voix d'écart. Les 25 indéterminées restent une zone grise.</div>
+        <div class="chart-wrap" style="height:220px">
+          <canvas id="procChart"></canvas>
+        </div>
+        <span class="chip orange neutral">Les procurations n'ont pas changé l'issue</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION : GRADIENT -->
+  <div class="section">
+    <div class="section-label">02 · Sociologie de la participation</div>
+    <div class="section-title">Un gradient continu — pas une rupture à 60 ans</div>
+    <div class="section-sub">La participation monte marche par marche depuis 18 ans jusqu'à la vieillesse. L'effet commence dès 40 ans.</div>
+
+    <div class="card-grid grid-3-1">
+      <div class="card">
+        <div class="card-accent blue"></div>
+        <div class="card-title">Taux de participation par cohorte d'âge</div>
+        <div class="card-desc">La participation augmente fortement des 18–29 aux 40–49 ans, puis continue de progresser plus modérément. Il s'agit d'un gradient continu, pas d'un seuil.</div>
+        <div class="chart-wrap" style="height:300px">
+          <canvas id="gradientChart"></canvas>
+        </div>
+        <span class="chip blue">L'effet commence dès la quarantaine</span>
+      </div>
+      <div class="card">
+        <div class="card-accent" style="background:var(--text)"></div>
+        <div class="card-title">Âge médian</div>
+        <div class="card-desc">Le corps électoral actif est structurellement plus âgé que le village réel.</div>
+        <div class="median-visual">
+          <div class="median-block">
+            <div class="median-num gray">51</div>
+            <div class="median-desc">Médiane<br>inscrits</div>
+          </div>
+          <div class="median-sep">
+            <div class="median-sep-arrow">→</div>
+            <div class="median-sep-val">+5 ans</div>
+            <div class="median-sep-label">biais</div>
+          </div>
+          <div class="median-block">
+            <div class="median-num dark">56</div>
+            <div class="median-desc">Médiane<br>votants réels</div>
+          </div>
+        </div>
+        <div style="margin-top:20px;">
+          <div style="font-size:13px; color:var(--text-secondary); margin-bottom:8px;">Surreprésentation des 61+ :</div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:4px;">
+            <span>Dans les inscrits</span><span style="font-weight:600;">35,0%</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:13px; margin-bottom:12px;">
+            <span>Dans les votants réels</span><span style="font-weight:700; color:var(--text);">40,8%</span>
+          </div>
+          <div style="background:var(--bg); border-radius:6px; height:8px; overflow:hidden; position:relative;">
+            <div style="background:var(--border); height:100%; width:35%;"></div>
+            <div style="background:var(--text); height:100%; width:40.8%; position:absolute; top:0; left:0; border-radius:6px; opacity:0.7;"></div>
+          </div>
+          <span class="chip blue">+5,8 pts de surreprésentation</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION : RÉSERVOIR -->
+  <div class="section">
+    <div class="section-label">03 · Le réservoir dormant</div>
+    <div class="section-title">Le bloc 18–39 : 248 abstentionnistes sur 503</div>
+    <div class="section-sub">Près de la moitié de toute l'abstention du village se concentre dans les deux premières décennies électorales.</div>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <div class="card-accent red"></div>
+        <div class="card-title">Sur/sous-représentation dans le vote</div>
+        <div class="card-desc">Poids dans les inscrits vs poids réel dans les bulletins. Les 18–30 perdent 6,6 points.</div>
+        <div class="chart-wrap" style="height:260px">
+          <canvas id="weightChart"></canvas>
+        </div>
+        <span class="chip red down">18–30 ans : −6,6 pts dans le vote réel</span>
+      </div>
+      <div class="card">
+        <div class="card-accent green"></div>
+        <div class="card-title">Abstentionnistes par cohorte — valeur absolue</div>
+        <div class="card-desc">Le taux le plus bas observé se situe chez les 20–24 ans. L'interprétation en termes de mobilité résidentielle est plausible — c'est une hypothèse, pas un résultat extrait des fichiers.</div>
+        <div class="chart-wrap" style="height:260px">
+          <canvas id="abstChart"></canvas>
+        </div>
+        <span class="chip green">18–39 ans = 49% de toute l'abstention</span>
+      </div>
+    </div>
+
+    <!-- Fine grain 20-24 -->
+    <div class="card" style="margin-top:16px;">
+      <div class="card-accent orange"></div>
+      <div class="card-title">Détail : les 20–24 ans forment le point bas observé</div>
+      <div class="card-desc">On observe un décrochage plus net à 20–24 ans qu'à 18–19. Ce constat est solide. Son interprétation (mobilité résidentielle, décohabitation, instabilité d'adresse) est une hypothèse sociologique plausible — les fichiers ne l'établissent pas directement.</div>
+      <div class="progress-list">
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-name">18–19 ans (primo-votants)</span><span class="progress-val" style="color:var(--orange)">~48%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:48%; background:var(--orange);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-name" style="font-weight:700;">20–24 ans — point bas observé</span><span class="progress-val" style="color:var(--red); font-weight:800;">~32%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:32%; background:var(--red);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-name">25–29 ans (réinstallation)</span><span class="progress-val" style="color:var(--blue)">~52%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:52%; background:var(--blue);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-name">30–39 ans (stabilisation)</span><span class="progress-val" style="color:var(--green)">58%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:58%; background:var(--green);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-name">40–49 ans</span><span class="progress-val" style="color:var(--green)">72,6%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:72.6%; background:var(--green);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-name">60 ans et plus</span><span class="progress-val" style="color:var(--text)">80,6%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:80.6%; background:var(--text);"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-header"><span class="progress-name" style="color:var(--text-secondary)">Moyenne village</span><span class="progress-val" style="color:var(--text-secondary)">69,0%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:69%; background:var(--border);"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION : FOYER + QUARTIER -->
+  <div class="section">
+    <div class="section-label">04 · Adresse et territoire</div>
+    <div class="section-title">Forte homogénéité de participation à l'échelle de l'adresse</div>
+    <div class="section-sub">Dans les adresses comptant plusieurs inscrits, les comportements sont souvent homogènes. Ce résultat est compatible avec une logique domestique de mobilisation — sans suffire à la démontrer au sens strict.</div>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <div class="card-accent purple"></div>
+        <div class="card-title">Homogénéité de participation à l'échelle de l'adresse</div>
+        <div class="card-desc">Parmi les adresses comptant plusieurs électeurs inscrits, les comportements sont souvent homogènes. Ce résultat est compatible avec une logique domestique de mobilisation, sans suffire à la démontrer entièrement.</div>
+        <div class="donut-layout">
+          <div class="donut-wrap">
+            <canvas id="foderChart"></canvas>
+            <div class="donut-center-abs">
+              <div class="donut-center-val">100%</div>
+              <div class="donut-center-sub">foyers<br>analysés</div>
+            </div>
+          </div>
+          <div class="donut-items">
+            <div class="donut-item">
+              <div class="donut-dot" style="background:var(--green)"></div>
+              <div>
+                <div class="donut-item-val" style="color:var(--green)">54%</div>
+                <div class="donut-item-label">Tous les membres ont voté</div>
+              </div>
+            </div>
+            <div class="donut-item">
+              <div class="donut-dot" style="background:var(--blue)"></div>
+              <div>
+                <div class="donut-item-val" style="color:var(--blue)">33%</div>
+                <div class="donut-item-label">Comportements divergents</div>
+              </div>
+            </div>
+            <div class="donut-item">
+              <div class="donut-dot" style="background:var(--red)"></div>
+              <div>
+                <div class="donut-item-val" style="color:var(--red)">13%</div>
+                <div class="donut-item-label">Aucun membre n'a voté</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <span class="chip purple neutral">Pour 2032 : penser aussi l'adresse comme unité de mobilisation</span>
+      </div>
+
+      <div class="card">
+        <div class="card-accent orange"></div>
+        <div class="card-title">Abstention par quartier — avec effectifs</div>
+        <div class="card-desc">Cardinal et Cabernet décrochent, mais avec de faibles volumes (28 et 46 inscrits). L'écart observé entre quartiers peut refléter en partie la composition des inscrits — il ne doit pas être interprété sur les taux seuls.</div>
+        <div class="chart-wrap" style="height:280px">
+          <canvas id="quartierChart"></canvas>
+        </div>
+        <span class="chip orange neutral">Comparer les taux avec les effectifs et la composition</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION : INSCRIPTION -->
+  <div class="section">
+    <div class="section-label">05 · Inscription et participation</div>
+    <div class="section-title">Participation plus forte chez les inscrits volontaires</div>
+    <div class="section-sub">Sur 128 mouvements d'inscription retenus pour l'analyse (juin 2024–déc. 2025). Attention : les inscrits d'office sont majoritairement très jeunes — l'écart observé reflète en partie le gradient d'âge.</div>
+
+    <div class="card-grid grid-2">
+      <div class="card">
+        <div class="card-accent green"></div>
+        <div class="card-title">Participation selon le mode d'inscription</div>
+        <div class="card-desc">Un écart net apparaît entre inscription volontaire et inscription d'office. Il doit être lu en tenant compte du gradient d'âge.</div>
+        <div class="chart-wrap" style="height:220px">
+          <canvas id="inscriptionChart"></canvas>
+        </div>
+        <span class="chip green">Inscription volontaire : participation plus élevée</span>
+      </div>
+      <div class="card">
+        <div class="card-accent" style="background:var(--text)"></div>
+        <div class="card-title">Lecture correcte</div>
+        <div class="card-desc" style="margin-bottom:20px;">Deux lectures du même phénomène — l'une vraie, l'autre trop rapide.</div>
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <div style="background:var(--red-light); border-left:3px solid var(--red); border-radius:0 8px 8px 0; padding:14px 16px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--red); margin-bottom:6px;">À éviter</div>
+            <div style="font-size:13px; color:var(--text); line-height:1.5;">« Les inscrits d'office ne sont pas civiquement engagés. »</div>
+          </div>
+          <div style="background:var(--green-light); border-left:3px solid var(--green); border-radius:0 8px 8px 0; padding:14px 16px;">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--green); margin-bottom:6px;">Formulation correcte</div>
+            <div style="font-size:13px; color:var(--text); line-height:1.5;">« Les inscriptions volontaires sont associées à une participation plus forte. Les inscriptions d'office, concentrées chez les plus jeunes, participent moins — pour des raisons d'âge autant que d'ancrage électoral. »</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SYNTHESIS -->
+  <div class="synthesis">
+    <div class="synthesis-eyebrow">Synthèse · Formule politique retenue</div>
+    <div class="synthesis-text">
+      Le scrutin a surreprésenté un <em>village électoral plus stable que le village inscrit</em> : plus âgé, plus souvent volontairement inscrit, et marqué par une forte homogénéité de participation à l'échelle de l'adresse.<br><br>
+      Le réservoir dormant s'étend jusqu'aux 39 ans : <em>248 abstentionnistes sur 503</em>, soit près de la moitié de l'abstention totale. Le point bas observé se situe chez les 20–24 ans ; son interprétation sociologique demande prudence. Au fond : le <em>village stabilisé</em> a voté.
+    </div>
+    <hr class="synthesis-divider">
+    <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:28px;">
+      <div>
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35); margin-bottom:8px;">Ce que les données confirment</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7;">Gradient continu d'âge · Bloc 18–39 comme réservoir · Forte homogénéité intradresse · Participation plus élevée des inscrits volontaires</div>
+      </div>
+      <div>
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35); margin-bottom:8px;">Ce qui reste une hypothèse</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7;">Interprétation du creux 20–24 en termes de mobilité · Logique domestique de mobilisation · Écart quartier partiellement lié à la composition des inscrits</div>
+      </div>
+      <div>
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(255,255,255,0.35); margin-bottom:8px;">Ce qu'on ne peut pas dire</div>
+        <div style="font-size:13px; color:rgba(255,255,255,0.7); line-height:1.7;">Pour qui a voté chaque cohorte · Si la participation était homogène le résultat aurait changé · Pour qui auraient voté les abstentionnistes</div>
+      </div>
+    </div>
+    <div class="synthesis-limits"><strong>Note méthodologique :</strong> le fichier mouvements couvre juin 2024–décembre 2025, et non l'ensemble du mandat depuis 2020. Six dates de naissance sont mal saisies dans la liste électorale. La comparaison 2020/2026 est limitée par le contexte Covid du 15 mars 2020. <strong>La section campagne repose sur un repérage militant des soutiens identifiés ; elle n'a pas le même statut probatoire que les fichiers électoraux et d'émargement.</strong> Ces points n'inversent pas la direction des résultats, mais encadrent leur portée.</div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <strong>Stéphane Lalut · Saint Bau Ensemble</strong>
+      <span>Note interne · 23 mars 2026</span>
+    </div>
+    <div class="footer-note">
+      Sources officielles : liste d'émargement (1 623 inscrits), liste électorale arrêtée avec dates de naissance, fichier des mouvements d'inscription. Section campagne fondée sur le repérage militant des soutiens identifiés — statut probatoire distinct. Analyse produite à partir des fichiers constitués par Stéphanie Dubois de Prisque.
+    </div>
+  </div>
+
+</div><!-- /page -->
+
+<script>
+Chart.defaults.color = '#6e6e73';
+Chart.defaults.borderColor = '#e8e8ed';
+Chart.defaults.font.family = "'Inter', -apple-system, sans-serif";
+Chart.defaults.font.size = 12;
+
+// 1. VOIX DECOMPOSITION
+new Chart(document.getElementById('voixChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Base identifiée Oscar mobilisée', 'Voix hors base identifiée'],
+    datasets: [{
+      data: [118, 571],
+      backgroundColor: ['#1d1d1f', '#d2d2d7'],
+      borderWidth: 0,
+      hoverOffset: 6,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    cutout: '68%',
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 10, padding: 16, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.raw} voix (${Math.round(ctx.raw/689*100)}%)` } }
+    }
+  }
+});
+
+// 2. PROCURATIONS
+new Chart(document.getElementById('procChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Pour nous', 'Indéterminées', 'Pour Oscar', 'Non utilisées'],
+    datasets: [{
+      data: [35, 25, 10, 2],
+      backgroundColor: ['#0071e3', '#aeaeb2', '#1d1d1f', '#e8e8ed'],
+      borderWidth: 0,
+      hoverOffset: 6,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    cutout: '68%',
+    plugins: {
+      legend: { position: 'bottom', labels: { boxWidth: 10, padding: 12, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.raw} procurations` } }
+    }
+  }
+});
+
+// 3. GRADIENT
+new Chart(document.getElementById('gradientChart'), {
+  type: 'bar',
+  data: {
+    labels: ['18–29', '30–39', '40–49', '50–59', '60+'],
+    datasets: [{
+      data: [43.7, 58.0, 72.6, 76.2, 80.6],
+      backgroundColor: ['#ff453a', '#ff9f0a', '#ffd60a', '#30d158', '#0071e3'],
+      borderRadius: 8,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.raw}%` } }
+    },
+    scales: {
+      x: { grid: { display: false }, border: { display: false } },
+      y: { min: 0, max: 100, ticks: { callback: v => v+'%', stepSize: 25 }, border: { display: false }, grid: { color: '#f0f0f5' } }
+    }
+  }
+});
+
+// 4. WEIGHT
+new Chart(document.getElementById('weightChart'), {
+  type: 'bar',
+  data: {
+    labels: ['18–30', '31–45', '46–60', '61–75', '76+'],
+    datasets: [
+      { label: '% inscrits', data: [17.3, 22.3, 25.0, 20.8, 14.2], backgroundColor: '#d2d2d7', borderRadius: 5, borderSkipped: false },
+      { label: '% votants réels', data: [10.7, 20.8, 27.4, 25.3, 15.5], backgroundColor: '#0071e3', borderRadius: 5, borderSkipped: false }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position: 'top', labels: { boxWidth: 10, boxHeight: 10, useBorderRadius: true, borderRadius: 5, padding: 14, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}: ${ctx.raw}%` } }
+    },
+    scales: {
+      x: { grid: { display: false }, border: { display: false } },
+      y: { ticks: { callback: v => v+'%' }, border: { display: false }, grid: { color: '#f0f0f5' } }
+    }
+  }
+});
+
+// 5. ABSTENTIONNISTES
+new Chart(document.getElementById('abstChart'), {
+  type: 'bar',
+  data: {
+    labels: ['18–30', '31–45', '46–60', '61–75', '76+'],
+    datasets: [{
+      data: [161, 129, 99, 54, 56],
+      backgroundColor: ['#d93025', '#e8513a', '#1d1d1f88', '#1d1d1f44', '#1d1d1f33'],
+      borderRadius: 6,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.raw} abstentionnistes` } }
+    },
+    scales: {
+      y: { grid: { display: false }, border: { display: false } },
+      x: { border: { display: false }, grid: { color: '#f0f0f5' } }
+    }
+  }
+});
+
+// 6. FOYER DONUT
+new Chart(document.getElementById('foderChart'), {
+  type: 'doughnut',
+  data: {
+    datasets: [{
+      data: [54, 33, 13],
+      backgroundColor: ['#28a745', '#0071e3', '#d93025'],
+      borderWidth: 3,
+      borderColor: '#ffffff',
+      hoverOffset: 8,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    cutout: '72%',
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => { const l=['Tous ont voté','Vote partagé','Aucun n\'a voté']; return ` ${l[ctx.dataIndex]} : ${ctx.raw}%`; } } }
+    }
+  }
+});
+
+// 7. QUARTIER
+const qd = [
+  { q:'Cardinal (n=28)', v:46.4 },
+  { q:'Cabernet (n=46)', v:45.7 },
+  { q:'Coste (n=45)', v:42.2 },
+  { q:'Jardins du Plo (n=47)', v:36.2 },
+  { q:'Plantade (n=58)', v:29.3 },
+  { q:'Grand Rue (n=297)', v:30.0 },
+  { q:'Draille CV (n=36)', v:30.6 },
+  { q:'Mas de Banal (n=48)', v:27.1 },
+  { q:'Cabalounas (n=34)', v:20.6 },
+  { q:'Ballats (n=28)', v:21.4 },
+  { q:'Les Vignes (n=16)', v:18.8 },
+  { q:'Roubiade (n=9)', v:22.2 },
+].sort((a,b)=>b.v-a.v);
+
+new Chart(document.getElementById('quartierChart'), {
+  type: 'bar',
+  data: {
+    labels: qd.map(d=>d.q),
+    datasets: [{
+      data: qd.map(d=>d.v),
+      backgroundColor: qd.map(d => d.v>=42?'#d93025':d.v>=35?'#f56300':d.v>=28?'#aeaeb2':'#28a745'),
+      borderRadius: 5,
+      borderSkipped: false,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.raw}% d'abstention` } }
+    },
+    scales: {
+      y: { grid: { display: false }, border: { display: false }, ticks: { font: { size: 10.5 } } },
+      x: { border: { display: false }, grid: { color: '#f0f0f5' }, ticks: { callback: v=>v+'%' }, max: 55 }
+    }
+  }
+});
+
+// 8. INSCRIPTION
+new Chart(document.getElementById('inscriptionChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Volontaire', 'D\'office'],
+    datasets: [{
+      data: [80.4, 53.3],
+      backgroundColor: ['#28a745', '#d93025'],
+      borderRadius: 10,
+      borderSkipped: false,
+      barThickness: 60,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ` ${ctx.raw}%` } }
+    },
+    scales: {
+      x: { grid: { display: false }, border: { display: false } },
+      y: { min: 0, max: 100, ticks: { callback: v=>v+'%', stepSize: 20 }, border: { display: false }, grid: { color: '#f0f0f5' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
